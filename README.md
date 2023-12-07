@@ -1,1 +1,1 @@
-# Auxi Bot
+# AuxiBot
