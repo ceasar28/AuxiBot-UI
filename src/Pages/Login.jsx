@@ -1,6 +1,7 @@
 import React from 'react'
 import loginImage from '../assets/amico.png';
 import googleImg from '../assets/devicon_google.jpg'
+
 const Login = () => {
     return (
         <div className="w-full min-h-full flex justify-between bg-white">
