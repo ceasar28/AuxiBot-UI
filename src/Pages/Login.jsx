@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Web5 } from "@web5/api/browser";
 import { Link } from "react-router-dom";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import loginImage from "../assets/amico.png";
@@ -8,6 +7,7 @@ import googleImg from "../assets/devicon_google.jpg";
 import Input from "../Components/Input";
 import Button from "../Components/Button";
 import { toast } from "react-toastify";
+import { Web5 } from "@web5/api/browser";
 // import auxiBotProtocol from "../utils/protocol.json";
 const Login = () => {
   const navigate = useNavigate();
@@ -166,15 +166,20 @@ const Login = () => {
 
   useEffect(() => {
     const initWeb5 = async () => {
-      const { web5, did } = await Web5.connect();
-      setWeb5(web5);
-      setMyDid(did);
+      const { Web5 } = await import("@web5/api/browser");
+      try {
+        const { web5, did } = await Web5.connect();
+        setWeb5(web5);
+        setMyDid(did);
 
-      if (web5 && did) {
-        console.log(web5);
-        console.log(did);
-        await configureProtocol(web5, did);
-        // await fetchDings(web5, did);
+        if (web5 && did) {
+          console.log(web5);
+          console.log(did);
+          await configureProtocol(web5, did);
+          // await fetchDings(web5, did);
+        }
+      } catch (error) {
+        console.log("initializing web5 error");
       }
     };
     initWeb5();
