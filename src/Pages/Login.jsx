@@ -38,6 +38,7 @@ const Login = () => {
       setMyDid(did);
 
       if (web5 && did) {
+        console.log(web5);
         console.log(did);
         // await configureProtocol(web5, did);
         // await fetchDings(web5, did);
