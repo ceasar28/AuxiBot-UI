@@ -167,8 +167,9 @@ const Login = () => {
   useEffect(() => {
     const initWeb5 = async () => {
       const { Web5 } = await import("@web5/api/browser");
+      // @ts-ignore
       try {
-        const { web5, did } = await Web5.connect();
+        const { web5, did } = await Web5.connect({ sync: "5s" });
         setWeb5(web5);
         setMyDid(did);
 
