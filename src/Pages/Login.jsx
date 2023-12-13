@@ -166,7 +166,7 @@ const Login = () => {
 
   useEffect(() => {
     const initWeb5 = async () => {
-      const { Web5 } = await import("@web5/api");
+      const { Web5 } = await import("@web5/api/browser");
       try {
         const { web5, did } = await Web5.connect();
         setWeb5(web5);
