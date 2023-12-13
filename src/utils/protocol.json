@@ -1,0 +1,19 @@
+{
+  "protocol": "https://blackgirlbytes.dev/dinger-chat-protocol",
+  "published": true,
+  "types": {
+    "auxi": {
+      "schema": "https://blackgirlbytes.dev/ding",
+      "dataFormats": ["application/json"]
+    }
+  },
+  "structure": {
+    "auxi": {
+      "$actions": [
+        { "who": "anyone", "can": "write" },
+        { "who": "user", "of": "auxi", "can": "read" },
+        { "who": "bot", "of": "auxi", "can": "read" }
+      ]
+    }
+  }
+}
