@@ -6,6 +6,9 @@ import loginImage from "../assets/amico.png";
 import googleImg from "../assets/devicon_google.jpg";
 import Input from "../Components/Input";
 import Button from "../Components/Button";
+import logoImage from '../assets/material-symbols_robot.png';
+import auxibot from '../assets/material-symbols_robot.jpg';
+
 
 // import { toast } from "react-toastify";
 
@@ -224,6 +227,23 @@ const Login = () => {
 
   return (
     <div className="w-full min-h-full flex justify-between bg-white">
+
+      <div className="Logo flex items-center mt-5 ml-5 absolute cursor-pointer ">
+        <Link to='/'>  <div className="flex items-center cursor-pointer">
+          <img src={logoImage} alt="Logo" className="h-8 mr-2 top-[3.5rem] left-[1.6rem]" />
+
+          <div className=" text-center text-white text-2xl font-semibold font-['Inter']"> AuxiBot<br /></div>
+
+        </div>
+        </Link>
+        <Link to='/'>  <div className="flex items-center cursor-pointer ms:hidden">
+          <img src={auxibot} alt="Logo" className="h-8 mr-2 absolute top-[0rem] left-[0rem]" />
+
+          <div className=" text-center text-primary-600 absolute top-[0rem] left-[2.6rem] text-2xl font-semibold font-['Inter']"> AuxiBot<br /></div>
+
+        </div>
+        </Link>
+      </div>
       <div className="w-[45vw] min-h-[100vh] bg-violet-900 hidden ms:flex justify-center items-center">
         <img src={loginImage} alt="Logo" className="w-[70%] mr-12" />
       </div>
