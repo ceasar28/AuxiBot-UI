@@ -6,7 +6,7 @@ import loginImage from "../assets/amico.png";
 import googleImg from "../assets/devicon_google.jpg";
 import Input from "../Components/Input";
 import Button from "../Components/Button";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 
 // import auxiBotProtocol from "../utils/protocol.json";
 const Login = () => {
@@ -31,8 +31,8 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let loading = toast.loading("loading");
-    // to check available protocols
+    // let loading = toast.loading("loading");
+    // // to check available protocols
     // const { protocols } = await web5.dwn.protocols.query({
     //   message: {
     //     filter: {
@@ -51,12 +51,12 @@ const Login = () => {
       console.log(status);
       console.log(await record.data.text());
       console.log("Send record status", record);
-      toast.update(loading, {
-        render: `Succesfully connected`,
-        type: "success",
-        isLoading: false,
-        autoClose: 3000, // Optional: Close the toast after 3 seconds
-      });
+      // toast.update(loading, {
+      //   render: `Succesfully connected`,
+      //   type: "success",
+      //   isLoading: false,
+      //   autoClose: 3000, // Optional: Close the toast after 3 seconds
+      // });
       return navigate("/");
     } else {
       console.log("no record");
