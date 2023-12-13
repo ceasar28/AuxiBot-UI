@@ -2,7 +2,7 @@ import React from 'react'
 
 const WelcomeMessage = () => {
     return (
-        <div className="WelcomeMessage flex flex-col items-start ml-8 bottom-0 transform translate-y-[10vh] sm:translate-y-[15vh]">
+        <div className="WelcomeMessage flex flex-col items-start ml-8 bottom-0 transform translate-y-[10vh] ss:translate-y-[15vh]">
             <div className="Auxibot text-start text-violet-900 text-xl font-bold font-['Inter'] mb-2">AuxiBot</div>
             <div className="WelcomeBelieve text-start text-gray-900 text-opacity-75 text-xl font-normal font-['Inter']">Welcome  Believe</div>
             <div className="Group20 flex flex-wrap gap-5">

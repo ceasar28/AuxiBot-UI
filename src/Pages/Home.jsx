@@ -36,6 +36,9 @@ const Home = () => {
             userText.push(text);
             localStorage.setItem('userText', JSON.stringify(userText));
             setText('');
+            setMessage(false);
+            setChatAreaVisible(true);
+            setResponseVisible(true);
         }
     };
     

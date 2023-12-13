@@ -14,7 +14,7 @@ const RightSidebar = ({ rightSidebarOpen, toggleRightSidebar, showRecentChat }) 
                     {/* Content for the right sidebar */}
                     <div className="flex flex-col items-start justify-between mt-[3rem]">
                         <div className="w-[14rem] flex items-center justify-between">
-                            <div className="text-neutral-400 text-opacity-90 text-base font-medium font-['Inter']">Recent</div>
+                            <div className="text-neutral-400 text-opacity-90 text-base font-medium font-['Inter']">Daily Task</div>
                             <img
                                 src={add}
                                 alt="Logo"
