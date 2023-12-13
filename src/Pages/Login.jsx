@@ -6,6 +6,7 @@ import loginImage from "../assets/amico.png";
 import googleImg from "../assets/devicon_google.jpg";
 import Input from "../Components/Input";
 import Button from "../Components/Button";
+
 // import { toast } from "react-toastify";
 
 // import auxiBotProtocol from "../utils/protocol.json";
@@ -166,7 +167,7 @@ const Login = () => {
 
   useEffect(() => {
     const initWeb5 = async () => {
-      const { Web5 } = await import("@web5/api/browser");
+      const { Web5 } = await import("@web5/api");
       try {
         const { web5, did } = await Web5.connect();
         setWeb5(web5);
