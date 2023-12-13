@@ -42,3 +42,13 @@ html {
   scrollbar-face-color: #888;
   scrollbar-track-color: #f1f1f1;
 }
+
+.expand-sidebar {
+  width: 16rem; /* Define the expanded width */
+  transition: width 0.3s ease; /* Add a transition for smooth animation */
+}
+
+.collapse-sidebar {
+  width: 5rem; /* Define the collapsed width */
+  transition: width 0.3s ease; /* Add a transition for smooth animation */
+}
