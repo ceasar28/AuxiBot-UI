@@ -8,6 +8,8 @@ import LeftSidebar from '../screen/LeftSidebar';
 import WelcomeMessage from '../screen/WelcomeMessage';
 import ChatArea from '../screen/ChatArea';
 import Response from '../screen/Response';
+import { Link } from "react-router-dom";
+
 
 
 const Home = () => {
@@ -157,12 +159,13 @@ const Home = () => {
             />
 
             <div className="Logo flex items-center mt-5 ml-5 absolute cursor-pointer">
-                <div className="flex items-center cursor-pointer">
-                    <img src={logoImage} alt="Logo" className="h-8 mr-2 bsolute top-[3.5rem] left-[1.6rem]" />
-                    {showUpcomingEvent && (
-                        <div className=" text-center text-white text-2xl font-semibold font-['Inter']"> AuxiBot<br /></div>
-                    )}
-                </div>
+            <Link to='/'>  <div className="flex items-center cursor-pointer">
+          <img src={logoImage} alt="Logo" className="h-8 mr-2 top-[3.5rem] left-[1.6rem]" />
+
+          <div className=" text-center text-white text-2xl font-semibold font-['Inter']"> AuxiBot<br /></div>
+
+        </div>
+        </Link>
 
             </div>
 
