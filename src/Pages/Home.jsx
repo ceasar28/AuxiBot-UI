@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import send from "../assets/ion_send.png";
 import calendar from "../assets/ri_calendar-todo-fill.png";
 import { FiMenu, FiChevronLeft } from "react-icons/fi";
@@ -9,8 +10,13 @@ import WelcomeMessage from "../screen/WelcomeMessage";
 import ChatArea from "../screen/ChatArea";
 import Response from "../screen/Response";
 import { Link } from "react-router-dom";
+import { useWeb5 } from "../web5Context";
 
 const Home = () => {
+  const { web5, userDid } = useWeb5();
+  const navigate = useNavigate();
+  const [profile, setUserprofile] = useState([]);
+  const [fName, setFname] = useState("Anonymous");
   const [text, setText] = useState("");
   const [sidebarExpanded, setSidebarExpanded] = useState(false);
   const [rightSidebarOpen, setRightSidebarOpen] = useState(false);
@@ -29,11 +35,12 @@ const Home = () => {
   };
 
   console.log("chats", chats);
+
   const handleSend = async () => {
     const payload = {
       query: text,
     };
-    if (payload.query.trim() !== "") {
+    if (payload.query.trim() !== "" && profile) {
       try {
         const response = await fetch(
           "https://auxi-bot.onrender.com/api/bot/palm",
@@ -72,6 +79,7 @@ const Home = () => {
       //   userText.push(text);
       //   localStorage.setItem("userText", JSON.stringify(userText));
     }
+    return navigate("/profile");
   };
 
   const handleKeyPress = (event) => {
@@ -98,6 +106,51 @@ const Home = () => {
   const [menuClicked, setMenuClicked] = useState(false);
 
   useEffect(() => {
+    if (web5 && userDid) {
+      console.log("loading now...");
+      const retrieveData = async () => {
+        console.log("Fetching saved profile...");
+        try {
+          const { records, status } = await web5.dwn.records.query({
+            message: {
+              filter: {
+                protocol: "https://didcomm.org/auxi-bot-protocol",
+                schema:
+                  "https://didcomm.org/auxi-bot-protocol/schemas/user.json",
+              },
+            },
+          });
+
+          console.log("API Response:", status);
+
+          if (status.code === 200) {
+            const userProfile = await Promise.all(
+              records.map(async (record) => {
+                const data = await record.data.json();
+                return data;
+              })
+            );
+            console.log("This is data you need...", userProfile);
+            setUserprofile([...userProfile]);
+            setFname([...userProfile][0].firstName);
+          } else {
+            console.error("Error fetching sent messages:", status.detail);
+            // Handle specific error cases or show an error message to the user.
+          }
+        } catch (error) {
+          console.error("Oops, this happened", error);
+          // Handle unexpected errors here.
+        }
+      };
+
+      retrieveData();
+    } else {
+      console.log("not ready");
+    }
+  }, [web5, userDid, fName]);
+
+  useEffect(() => {
+    console.log("fname", fName);
     function handleResize() {
       if (window.innerWidth > 768) {
         setSidebarExpanded(true);
@@ -128,13 +181,13 @@ const Home = () => {
         className="w-[80vw] sm:w-[60vw] flex m-auto flex-col items-start justify-between overflow-y-auto mb-[12vh]"
         style={{ maxHeight: "90vh", minHeight: "40vh" }}
       >
-        {Message && <WelcomeMessage />}
+        {Message && <WelcomeMessage fName={fName} />}
 
         {!Message && (
           <div className="messages">
             {chats.map((chat, index) => (
               <div key={index} className="message">
-                <ChatArea message={chat.author} />
+                <ChatArea message={chat.author} fName={fName} />
                 <Response message={chat.bot} />
               </div>
             ))}
@@ -167,6 +220,7 @@ const Home = () => {
       </div>
 
       <LeftSidebar
+        fName={fName}
         windowWidth={window.innerWidth}
         sidebarExpanded={sidebarExpanded}
         showRecentChat={showRecentChat}

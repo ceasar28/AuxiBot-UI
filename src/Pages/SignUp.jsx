@@ -1,137 +1,205 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { BsEye, BsEyeSlash } from 'react-icons/bs'
-import loginImage from '../assets/amico2.png';
-import googleImg from '../assets/devicon_google.jpg'
-import Input from '../Components/Input';
-import Button from '../Components/Button';
-
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
+import loginImage from "../assets/amico2.png";
+import googleImg from "../assets/devicon_google.jpg";
+import logoImage from "../assets/material-symbols_robot.png";
+import auxibot from "../assets/material-symbols_robot.jpg";
+import Input from "../Components/Input";
+import Button from "../Components/Button";
+import { useWeb5 } from "../web5Context";
 const SignUp = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [fullName, setFullName] = useState('');
+  const { web5, userDid } = useWeb5();
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [firstName, setfirstName] = useState("");
+  const [lastName, setlastName] = useState("");
 
-    const handleFullNameChange = (e) => {
-        setFullName(e.target.value);
-    };
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
 
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
-    };
+  const handleFirstNameChange = (e) => {
+    setfirstName(e.target.value);
+  };
 
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value);
-    };
+  const handleLastNameChange = (e) => {
+    setlastName(e.target.value);
+  };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // let loading = toast.loading("loading");
+    // // to check available protocols
+    // const { protocols } = await web5.dwn.protocols.query({
+    //   message: {
+    //     filter: {
+    //       protocol: "https://didcomm.org/auxi-bot-protocol",
+    //     },
+    //   },
+    // });
+    // console.log("procols available :", protocols);
 
-    const [showPassword, setShowPassword] = useState(false)
-
-    const togglePasswordVisibility = () => {
-        setShowPassword(!showPassword)
+    const user = constructUserProfile();
+    console.log(user);
+    const record = await writeToDwn(user);
+    console.log(record);
+    if (record) {
+      const { status } = await record.send(userDid); // send the record to the user's remote DWeb Nodes
+      console.log(status);
+      console.log(await record.data.text());
+      console.log("Send record status", record);
+      // toast.update(loading, {
+      //   render: `Succesfully connected`,
+      //   type: "success",
+      //   isLoading: false,
+      //   autoClose: 3000, // Optional: Close the toast after 3 seconds
+      // });
+      return navigate("/auxibot");
+    } else {
+      console.log("no record");
     }
 
-    const [message, setMessage] = useState(false)
-    return (
-        <div className="w-full min-h-full flex justify-between bg-white">
-            <div className="w-[45vw] min-h-[100vh] bg-violet-900 hidden ms:flex justify-center items-center">
-                <img
-                    src={loginImage}
-                    alt="Logo"
-                    className="w-[70%] mr-12"
-                />
+    // await fetchDings(web5, userDid);
+    // setNoteValue("");
+  };
+
+  useEffect(() => {
+    if (!web5 || !userDid) return;
+    // const intervalId = setInterval(async () => {
+    //   await fetchDings(web5, userDid);
+    // }, 2000);
+
+    // return () => clearInterval(intervalId);
+  }, [web5, userDid]);
+
+  const [message, setMessage] = useState(false);
+
+  useEffect(() => {
+    if (!web5 || !userDid) return;
+    // const intervalId = setInterval(async () => {
+    //   await fetchDings(web5, userDid);
+    // }, 2000);
+
+    // return () => clearInterval(intervalId);
+  }, [web5, userDid]);
+
+  const constructUserProfile = () => {
+    const currentDate = new Date().toLocaleDateString();
+    const currentTime = new Date().toLocaleTimeString();
+    const user = {
+      userDid: userDid,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      timestampWritten: `${currentDate} ${currentTime}`,
+    };
+    return user;
+  };
+
+  const writeToDwn = async (user) => {
+    const { record } = await web5.dwn.records.create({
+      data: user,
+      message: {
+        protocol: "https://didcomm.org/auxi-bot-protocol",
+        protocolPath: "user",
+        schema: "https://didcomm.org/auxi-bot-protocol/schemas/user.json",
+        dataFormat: "application/json",
+      },
+    });
+
+    return record;
+  };
+  return (
+    <div className="w-full min-h-full flex justify-between bg-white">
+      <div className="Logo flex items-center mt-5 ml-5 absolute cursor-pointer ">
+        <Link to="/">
+          {" "}
+          <div className="flex items-center cursor-pointer">
+            <img
+              src={logoImage}
+              alt="Logo"
+              className="h-8 mr-2 top-[3.5rem] left-[1.6rem]"
+            />
+          </div>
+          <div className="flex items-center cursor-pointer ms:hidden">
+            <img
+              src={auxibot}
+              alt="Logo"
+              className="h-8 mr-2 absolute top-[0rem] left-[0rem]"
+            />
+
+            <div className=" text-center text-primary-600 absolute top-[0rem] left-[2.6rem] text-2xl font-semibold font-['Inter']">
+               AuxiBot
+              <br />
             </div>
-            <div className="w-[60vw] min-h-[100vh] rounded-tl-[40px] rounded-bl-[40px] bg-white ms:absolute right-0 flex flex-col justify-center items-center m-auto">
-                <div className="w-[354px] text-center text-black text-[20px] sm:text-[30px] font-semibold font-['Inter'] ">Create Account</div>
-
-                <button className="w-full h-[50px] ss:w-[475px] mt-[1rem] input__tag border-2 hover:btn-hover font-Sora text-[16px] sm:text-[20px] rounded-[10px] border-neutral-900 border-opacity-75 justify-around flex items-center mb-[14px] m-auto p-1">
-                    <img
-                        src={googleImg}
-                        alt="Logo"
-                        className="w-6 h-6"
-                    />
-                    <div className="text-center text-neutral-900 text-opacity-95 font-medium font-['Inter']">Sign Up with Google</div>
-                </button>
-                <div className="w-[58px] h-[39px] text-center text-black text-[25px] font-semibold font-['Inter']">OR</div>
-
-                <form className="flex flex-col w-full ss:w-[475px]" onSubmit={handleSubmit}>
-
-                     {/* Full Name Input */}
-                     <div>
-                        <p className="text-[16px] font-Sora font-medium mb-[14px]">
-                            Full Name
-                        </p>
-                        <Input
-                         type={'text'}
-                            placeholder="Enter your Full Name"
-                            value={fullName}
-                            onChange={handleFullNameChange}
-                        />
-                    </div>
-
-                    {/* Email Input */}
-                    <div>
-                        <p className="text-[16px] font-Sora font-medium mb-[14px]">
-                            Email
-                        </p>
-                        <Input
-                         type={'text'}
-                            placeholder="Enter your Email"
-                            value={email}
-                            onChange={handleEmailChange}
-                        />
-                    </div>
-
-                    {/* Password Input */}
-                    <div>
-                        <p className="text-[16px] font-Sora font-medium mb-[14px]">
-                            Password
-                        </p>
-                        <div className="relative w-full">
-                            <Input
-                                type={showPassword ? 'text' : 'password'}
-                                placeholder="Enter your Password"
-                                value={password}
-                                onChange={handlePasswordChange}
-                            />
-                            {/* Toggle password visibility button */}
-                            <button
-                                type="button"
-                                onClick={togglePasswordVisibility}
-                                className="password-toggle-button text-xl absolute top-[50%] right-[1rem] transform translate-y-[-90%]"
-                            >
-                                {showPassword ? <BsEye /> : <BsEyeSlash />}
-                            </button>
-                        </div>
-                    </div>
-
-                    <Button
-                        onClick={handleSubmit}
-                        className={"w-full h-[50px] mt-[1rem] input__tag border-2 border-primary-600 rounded-md h-[50px] hover:btn-hover font-Sora text-[16px]  text-[14px] xs:text-[16px] bg-primary-600 text-white"}
-                    >
-                        Submit
-                    </Button>
-
-                  {message && (
-                        <p className="mt-[0.5rem] text-center text-[19px] font-semibold">
-                            {message}
-                        </p>
-                    )} 
-                    <h2 className="mt-[1rem] text-center text-[16px] text-primary-400 tracker-medium font-semibold font-Work-Sans">
-                    Already have an account?{' '}
-                        <Link to='/Login'>
-                            <span className="font-bold hover:underline cursor-pointer font-Sora">
-                            Login
-                            </span>
-                        </Link>
-                    </h2>
-                </form>
-
-            </div>
+          </div>
+        </Link>
+      </div>
+      <div className="w-[45vw] min-h-[100vh] bg-violet-900 hidden ms:flex justify-center items-center">
+        <img src={loginImage} alt="Logo" className="w-[70%] mr-12" />
+      </div>
+      <div className="w-[60vw] min-h-[100vh] rounded-tl-[40px] rounded-bl-[40px] bg-white ms:absolute right-0 flex flex-col justify-center items-center m-auto">
+        <div className="w-[354px] text-center text-black text-[20px] sm:text-[30px] font-semibold font-['Inter']">
+          Hello!,own your info for a smooth experience
         </div>
-  )
-}
+        <div className="w-[58px] h-[39px] text-center text-black text-[25px] font-semibold font-['Inter']"></div>
+        <form
+          className="flex flex-col w-full ss:w-[475px]"
+          onSubmit={handleSubmit}
+        >
+          {/* Email Input */}
+          <div>
+            <p className="text-[16px] font-Sora font-medium mb-[14px]">
+              First Name
+            </p>
+            <Input
+              type={"text"}
+              placeholder="First Name"
+              value={firstName}
+              onChange={handleFirstNameChange}
+            />
+          </div>
+          <div>
+            <p className="text-[16px] font-Sora font-medium mb-[14px]">
+              Last Name
+            </p>
+            <Input
+              type={"text"}
+              placeholder="Last NAME"
+              value={lastName}
+              onChange={handleLastNameChange}
+            />
+          </div>
+          <div>
+            <p className="text-[16px] font-Sora font-medium mb-[14px]">Email</p>
+            <Input
+              type={"text"}
+              placeholder="Enter your Email"
+              value={email}
+              onChange={handleEmailChange}
+            />
+          </div>
 
-export default SignUp
+          <Button
+            onClick={handleSubmit}
+            className={
+              "w-full h-[50px] mt-[1rem] input__tag border-2 border-primary-600 rounded-md hover:btn-hover font-Sora text-[16px] xs:text-[16px] bg-primary-600 text-white"
+            }
+          >
+            Connect to Web5
+          </Button>
+
+          {message && (
+            <p className="mt-[0.5rem] text-center text-[19px] font-semibold">
+              {message}
+            </p>
+          )}
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default SignUp;

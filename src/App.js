@@ -1,23 +1,26 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Login from './Pages/Login';
-import SignUp from './Pages/SignUp';
-import Logo from './Components/Logo';
-import Reminder from './screen/Reminder.jsx'
-import Task from './screen/Task.jsx'
-import Home from './Pages/Home';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Login from "./Pages/Login";
+import SignUp from "./Pages/SignUp";
+import Logo from "./Components/Logo";
+import Reminder from "./screen/Reminder.jsx";
+import Task from "./screen/Task.jsx";
+import Home from "./Pages/Home";
+import { Web5Provider } from "./web5Context.jsx";
 
 function App() {
   return (
-    <Router>
-     {/*  <Logo /> */}
+    <Web5Provider>
+      <Router>
+        {/*  <Logo /> */}
         <Routes>
-        <Route path='/' element={<Home />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/signup' element={<SignUp />} />
-          <Route path='/Reminder' element={<Reminder/>} />
-          <Route path='/Task' element={<Task/>} />
+          <Route path="/auxibot" element={<Home />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/profile" element={<SignUp />} />
+          <Route path="/Reminder" element={<Reminder />} />
+          <Route path="/Task" element={<Task />} />
         </Routes>
-    </Router>
+      </Router>
+    </Web5Provider>
   );
 }
 
