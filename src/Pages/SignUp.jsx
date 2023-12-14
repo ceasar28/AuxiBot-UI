@@ -141,7 +141,7 @@ const SignUp = () => {
         <img src={loginImage} alt="Logo" className="w-[70%] mr-12" />
       </div>
       <div className="w-[60vw] min-h-[100vh] rounded-tl-[40px] rounded-bl-[40px] bg-white ms:absolute right-0 flex flex-col justify-center items-center m-auto">
-        <div className="w-[354px] text-center text-black text-[20px] sm:text-[30px] font-semibold font-['Inter']">
+        <div className="w-[354px] text-center text-black text-[20px] sm:text-[30px] font-semibold font-Sora">
           Hello!,own your info for a smooth experience
         </div>
         <div className="w-[58px] h-[39px] text-center text-black text-[25px] font-semibold font-['Inter']"></div>

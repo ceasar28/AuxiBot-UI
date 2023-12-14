@@ -36,7 +36,9 @@ const ReminderModal = () => {
   };
 
   return (
-    <div className="fixed inset-0 bg-[black] bg-opacity-30 backdrop-blur-sm  flex justify-center items-center ">
+    <div className="fixed top-0 left-0 w-full h-full  items-center  bg-gray-800 bg-opacity-50  flex justify-center  ">
+    {/* <div className="fixed inset-0 bg-[black] bg-opacity-30 backdrop-blur-sm  flex justify-center items-center "> */}
+    
       <div className="md:w-[40rem] p-8 bg-white justify-center items-center mx-20">
         <form onSubmit={handleSubmit} className="mt-6 grid justify-center items-center overflow-hidden">
           <div className='flex justify-between'>

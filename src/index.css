@@ -49,6 +49,6 @@ html {
 }
 
 .collapse-sidebar {
-  width: 5rem; /* Define the collapsed width */
+  width: 4rem; /* Define the collapsed width */
   transition: width 0.3s ease; /* Add a transition for smooth animation */
 }

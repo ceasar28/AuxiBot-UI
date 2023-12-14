@@ -111,14 +111,14 @@ const Login = () => {
         <img src={loginImage} alt="Logo" className="w-[70%] mr-12" />
       </div>
       <div className="w-[60vw] min-h-[100vh] rounded-tl-[40px] rounded-bl-[40px] bg-white ms:absolute right-0 flex flex-col justify-center items-center m-auto">
-        <div className="w-[354px] text-center text-black text-[20px] sm:text-[30px] font-semibold font-['Inter']">
-          Join the Future with AuxiBot
+        <div className="w-[354px] text-center text-black text-[20px] sm:text-[30px] font-semibold font-Sora">
+          Join the Future with AuxiBot 
         </div>
         <div className="w-[58px] h-[39px] text-center text-black text-[25px] font-semibold font-['Inter']"></div>
 
         <form
-          className="flex flex-col w-full ss:w-[475px]"
-          onSubmit={handleSubmit}
+      className="bg-white rounded-lg shadow-8xl p-6 max-w-md mx-auto transform transition-all duration-300 hover:shadow-4xl"
+      onSubmit={handleSubmit}
         >
           {/* Email Input */}
           {/* <div>
@@ -152,16 +152,15 @@ const Login = () => {
               onChange={handleEmailChange}
             />
           </div> */}
-          <p className="mt-[0.5rem] text-center text-[19px] font-semibold">
-            Embrace the future of intelligent assistance with AuxiBot. Whether
-            you're an individual, a business professional,unlock new
-            possibilities, and simplify your life with our AI-powered assistant.
-          </p>
+           <p className="text-center text-md font-semibold text-gray-700 m-5 font-Sora">
+        Embrace the future of intelligent assistance with AuxiBot. Whether
+        you're an individual, a business professional, unlock new possibilities,
+        and simplify your life with our AI-powered assistant.
+      </p>
           <Button
             onClick={handleSubmit}
-            className={
-              "w-full h-[50px] mt-[1rem] input__tag border-2 border-primary-600 rounded-md hover:btn-hover font-Sora text-[16px] xs:text-[16px] bg-primary-600 text-white"
-            }
+            className="w-full h-12 mt-4 bg-primary-600 text-white rounded-md hover:bg-opacity-80"
+
           >
             Get Started
           </Button>

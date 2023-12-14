@@ -5,7 +5,7 @@ import ReminderModal from './ReminderModal'
 const Reminder = () => {
   return (
     <div className='flex'>
-        <Side/>
+        {/* <Side/> */}
        <ReminderModal/>
     </div>
   )
