@@ -179,14 +179,14 @@ const Home = () => {
     }, []);
 
     return (
-        <div className="h-[100vh] flex flex-row">
+        <div className="min-h-[100vh] flex flex-row">
             {window.innerWidth <= 768 ? (
                 <div className="w-[15vw] min-h-[100vh]"></div>
             ) : (
                 <div className=" w-[35vw] ms:w-[30vw] md:w-[20vw] min-h-[100vh]"></div>
             )}
             <div
-                className="w-[75vw] sm:w-[60vw] flex m-auto flex-col items-start  justify-between overflow-y-scroll overflow-x-hidden mb-[5rem]"
+                className="w-[75vw] sm:w-[60vw] flex m-auto flex-col items-start  justify-between overflow-y-scroll overflow-x-hidden"
                 style={{ maxHeight: "80vh", minHeight: "40vh" }}
             >
                 {Message && <WelcomeMessage fName={fName} />}
@@ -284,7 +284,7 @@ const Home = () => {
             />
             {loading && (
                 <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
-                    <div className="animate-spin rounded-full h-32 w-32 border-t-4 border-b-4 border-red-900"></div>
+                    <div className="animate-spin rounded-full h-32 w-32 border-t-4 border-b-4 border-red-600"></div>
                 </div>
             )}
         </div>
