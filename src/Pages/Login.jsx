@@ -110,7 +110,7 @@ const Login = () => {
       <div className="w-[45vw] min-h-[100vh] bg-violet-900 hidden ms:flex justify-center items-center">
         <img src={loginImage} alt="Logo" className="w-[70%] mr-12" />
       </div>
-      <div className="w-[60vw] min-h-[100vh] rounded-tl-[40px] rounded-bl-[40px] bg-white ms:absolute right-0 flex flex-col justify-center items-center m-auto">
+      <div className="w-[90vw] ms:w-[60vw] min-h-[100vh] rounded-tl-[40px] rounded-bl-[40px] bg-white ms:absolute right-0 flex flex-col justify-center items-center m-auto">
         <div className="w-[354px] text-center text-black text-[20px] sm:text-[30px] font-semibold font-Sora">
           Join the Future with AuxiBot 
         </div>

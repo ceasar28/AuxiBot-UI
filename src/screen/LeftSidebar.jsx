@@ -23,7 +23,7 @@ const LeftSidebar = ({
     <div
       className={`SideBar w-max-[${
         isMobile ? "4" : "17"
-      }rem]  h-full bg-violet-900 flex flex-col justify-between items-center text-center transition-all duration-300 m-0 p-[1.9rem] ease-in-out absolute`}
+      }rem]  min-h-[100vh] bg-violet-900 flex flex-col justify-between items-center text-center transition-all duration-300 m-0 p-[1.9rem] ease-in-out absolute`}
     >
       {showRecentChat && (
         <div className="flex flex-col items-start justify-between mt-[3rem]">
