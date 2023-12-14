@@ -40,36 +40,40 @@ const Home = () => {
     const payload = {
       query: text,
     };
-    if (payload.query.trim() !== "" && profile) {
+    if (payload.query.trim() !== "") {
       try {
-        const response = await fetch(
-          "https://auxi-bot.onrender.com/api/bot/palm",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json", // Specify the content type
-            },
-            body: JSON.stringify(payload), // Convert data to JSON string
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error("Network response was not ok.");
-        }
-        setText("");
-        setMessage(false);
-        setChatAreaVisible(true);
-        setResponseVisible(true);
-        const { data } = await response.json(); // Parse response JSON
-        if (data) {
-          console.log("Post request successful:", data);
-          setChats([
-            ...chats,
+        if (fName) {
+          const response = await fetch(
+            "https://auxi-bot.onrender.com/api/bot/palm",
             {
-              author: data.messages[0].content,
-              bot: data.candidates[0].content,
-            },
-          ]);
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json", // Specify the content type
+              },
+              body: JSON.stringify(payload), // Convert data to JSON string
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error("Network response was not ok.");
+          }
+          setText("");
+          setMessage(false);
+          setChatAreaVisible(true);
+          setResponseVisible(true);
+          const { data } = await response.json(); // Parse response JSON
+          if (data) {
+            console.log("Post request successful:", data);
+            setChats([
+              ...chats,
+              {
+                author: data.messages[0].content,
+                bot: data.candidates[0].content,
+              },
+            ]);
+          }
+        } else {
+          return navigate("/profile");
         }
       } catch (error) {
         console.error("There was a problem with the POST request:", error);
@@ -79,7 +83,6 @@ const Home = () => {
       //   userText.push(text);
       //   localStorage.setItem("userText", JSON.stringify(userText));
     }
-    return navigate("/profile");
   };
 
   const handleKeyPress = (event) => {
