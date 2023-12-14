@@ -14,7 +14,7 @@ module.exports = function override(config, env) {
 
   config.plugins.push(
     new webpack.ProvidePlugin({
-      process: "process/browser.js", // Adjusted path for process
+      process: "process/browser", // Adjusted path for process
       Buffer: ["buffer", "Buffer"],
     }),
     new webpack.NormalModuleReplacementPlugin(/node:crypto/, (resource) => {
