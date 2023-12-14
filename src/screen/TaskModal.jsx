@@ -29,7 +29,11 @@ function App() {
 
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm  flex justify-center items-center ">
+    <div className="fixed top-0 left-0 w-full h-full  items-center  bg-gray-800 bg-opacity-50  flex justify-center  ">
+
+   {/* <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm  flex justify-center items-center "> */} 
+
+
       <div className=" w-[50rem] h-[40rem] mt-[5rem]  bg-white justify-center items-center  overflow-">
     <div className="overflow-hidden">
     <div className="w-full grid justify-center gap-1 items-center text-start p-6  ">

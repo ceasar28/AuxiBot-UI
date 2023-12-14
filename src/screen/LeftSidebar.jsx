@@ -23,10 +23,10 @@ const LeftSidebar = ({
     <div
       className={`SideBar w-max-[${
         isMobile ? "4" : "17"
-      }rem] w-max-10vw min-h-[100vh] bg-violet-900 flex flex-col justify-between items-center text-center transition-all duration-300 m-0 p-[2.2rem] ease-in-out absolute`}
+      }rem]  h-full bg-violet-900 flex flex-col justify-between items-center text-center transition-all duration-300 m-0 p-[1.9rem] ease-in-out absolute`}
     >
       {showRecentChat && (
-        <div className="flex flex-col items-start justify-between mt-[2rem]">
+        <div className="flex flex-col items-start justify-between mt-[3rem]">
           <div className="w-[14rem] flex items-center justify-between">
             <div className="text-neutral-400 text-opacity-90 text-base font-medium font-['Inter']">
               Recent
@@ -51,9 +51,9 @@ const LeftSidebar = ({
           <UpcomingEvent />
         </div>
       )}
-      <div className="absolute bottom-0 left-[1rem] p-2 mb-3">
+      <div className="absolute bottom-0 left-[0.5rem] p-2 mb-3">
         <div className="cursor-pointer w-[6rem] flex items-center justify-between ">
-          <img src={profile} alt="Logo" className="w-6 h-6 mb-3" />
+          <img src={profile} alt="Logo" className="w-6 h-6 mb-3 mr-2" />
           {showTextChat && (
             <div className=" text-white text-lg font-medium font-['Inter'] mb-3">
               {fName}

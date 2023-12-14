@@ -10,6 +10,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        '8xl': '0 35px 60px 15px rgba(0, 0, 0, 0.9)',
+        '4xl': '0 35px 60px 15px rgba(0, 0, 0, 0.4)',
+      },
       colors: {
         primary: {
           100: "hsla(249, 14%, 74%, 1)",

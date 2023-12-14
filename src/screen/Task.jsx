@@ -5,7 +5,7 @@ import TaskModal from './TaskModal'
 const Task = () => {
   return (
     <div className='flex'>
-    <Side/>
+    {/* <Side/> */}
     <TaskModal/>
 </div>
   )
