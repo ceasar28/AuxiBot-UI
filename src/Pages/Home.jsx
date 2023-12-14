@@ -42,7 +42,7 @@ const Home = () => {
     };
     if (payload.query.trim() !== "") {
       try {
-        if (profile) {
+        if (profile.length !== 0) {
           const response = await fetch(
             "https://auxi-bot.onrender.com/api/bot/palm",
             {
