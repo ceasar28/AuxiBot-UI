@@ -32,6 +32,9 @@ const Home = () => {
 
   const storedText = JSON.parse(localStorage.getItem("userText")) || [];
 
+  const clearChats = () => {
+    setChats([]);
+  };
   const handleChange = (event) => {
     setText(event.target.value);
   };
