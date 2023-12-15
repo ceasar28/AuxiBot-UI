@@ -27,6 +27,7 @@ const Home = () => {
   const [chatAreaVisible, setChatAreaVisible] = useState(false);
   const [responseVisible, setResponseVisible] = useState(false);
   const [chats, setChats] = useState([]);
+  const [dwnChats, setDwnChats] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const storedText = JSON.parse(localStorage.getItem("userText")) || [];
@@ -73,6 +74,21 @@ const Home = () => {
                 bot: data.candidates[0].content,
               },
             ]);
+            const chat = constructChat(
+              data.messages[0].content,
+              data.candidates[0].content
+            );
+            console.log("chatfro did :", chat);
+            const record = await writeToDwn(chat);
+            console.log("records from DID:", record);
+            if (record) {
+              const { status } = await record.send(userDid); // send the record to the user's remote DWeb Nodes
+              console.log(status);
+              console.log(await record.data.text());
+              console.log("Send record status", record);
+            } else {
+              console.log("no record");
+            }
           }
         } else {
           return navigate("/profile");
@@ -176,6 +192,34 @@ const Home = () => {
     handleResize();
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const constructChat = (userPrompt, botResponse) => {
+    const currentDate = new Date().toLocaleDateString();
+    const currentTime = new Date().toLocaleTimeString();
+    const chat = {
+      userDid: userDid,
+      userPrompt: userPrompt,
+      botResponse: botResponse,
+      date: currentDate,
+      time: currentTime,
+      timestampWritten: `${currentDate} ${currentTime}`,
+    };
+    return chat;
+  };
+
+  const writeToDwn = async (chat) => {
+    const { record } = await web5.dwn.records.create({
+      data: chat,
+      message: {
+        protocol: "https://didcomm.org/auxi-bot-protocol",
+        protocolPath: "auxi",
+        schema: "https://didcomm.org/auxi-bot-protocol/schemas/auxi.json",
+        dataFormat: "application/json",
+      },
+    });
+
+    return record;
+  };
 
   return (
     <div className="min-h-[100vh] flex flex-row">

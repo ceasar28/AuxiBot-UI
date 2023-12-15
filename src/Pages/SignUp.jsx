@@ -30,35 +30,23 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // let loading = toast.loading("loading");
-    // // to check available protocols
-    // const { protocols } = await web5.dwn.protocols.query({
-    //   message: {
-    //     filter: {
-    //       protocol: "https://didcomm.org/auxi-bot-protocol",
-    //     },
-    //   },
-    // });
-    // console.log("procols available :", protocols);
+    try {
+      const user = constructUserProfile();
+      console.log(user);
+      const record = await writeToDwn(user);
+      console.log(record);
+      if (record) {
+        const { status } = await record.send(userDid); // send the record to the user's remote DWeb Nodes
+        console.log(status);
+        console.log(await record.data.text());
+        console.log("Send record status", record);
 
-    const user = constructUserProfile();
-    console.log(user);
-    const record = await writeToDwn(user);
-    console.log(record);
-    if (record) {
-      const { status } = await record.send(userDid); // send the record to the user's remote DWeb Nodes
-      console.log(status);
-      console.log(await record.data.text());
-      console.log("Send record status", record);
-      // toast.update(loading, {
-      //   render: `Succesfully connected`,
-      //   type: "success",
-      //   isLoading: false,
-      //   autoClose: 3000, // Optional: Close the toast after 3 seconds
-      // });
-      return navigate("/auxibot");
-    } else {
-      console.log("no record");
+        return navigate("/auxibot");
+      } else {
+        console.log("no record");
+      }
+    } catch (error) {
+      console.error(error);
     }
 
     // await fetchDings(web5, userDid);
@@ -67,11 +55,6 @@ const SignUp = () => {
 
   useEffect(() => {
     if (!web5 || !userDid) return;
-    // const intervalId = setInterval(async () => {
-    //   await fetchDings(web5, userDid);
-    // }, 2000);
-
-    // return () => clearInterval(intervalId);
   }, [web5, userDid]);
 
   const [message, setMessage] = useState(false);
@@ -111,6 +94,35 @@ const SignUp = () => {
 
     return record;
   };
+
+  // const constructChat = (userPrompt, botResponse) => {
+  //   const currentDate = new Date().toLocaleDateString();
+  //   const currentTime = new Date().toLocaleTimeString();
+  //   const chat = {
+  //     userDid: userDid,
+  //     userPrompt: userPrompt,
+  //     botResponse: botResponse,
+  //     date: currentDate,
+  //     time: currentTime,
+  //     timestampWritten: `${currentDate} ${currentTime}`,
+  //   };
+  //   return chat;
+  // };
+
+  // const writeToDwn2 = async (chat) => {
+  //   const { record } = await web5.dwn.records.create({
+  //     data: chat,
+  //     message: {
+  //       protocol: "https://didcomm.org/auxi-bot-protocol",
+  //       protocolPath: "auxi",
+  //       schema: "https://didcomm.org/auxi-bot-protocol/schemas/auxi.json",
+  //       dataFormat: "application/json",
+  //     },
+  //   });
+
+  //   return record;
+  // };
+
   return (
     <div className="w-full min-h-full flex justify-between bg-white">
       <div className="Logo flex items-center mt-5 ml-5 absolute cursor-pointer ">

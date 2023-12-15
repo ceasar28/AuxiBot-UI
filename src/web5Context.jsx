@@ -90,25 +90,25 @@ export const Web5Provider = ({ children }) => {
               can: "write",
             },
           ],
-          todo: {
-            $actions: [
-              {
-                who: "author",
-                of: "todo",
-                can: "read",
-              },
-              {
-                who: "anyone",
-                can: "write",
-              },
-            ],
-          },
-          auxi: {
-            $actions: [
-              { who: "anyone", can: "write" },
-              { who: "author", of: "auxi", can: "read" },
-            ],
-          },
+        },
+        auxi: {
+          $actions: [
+            { who: "anyone", can: "write" },
+            { who: "author", of: "auxi", can: "read" },
+          ],
+        },
+        todo: {
+          $actions: [
+            {
+              who: "author",
+              of: "todo",
+              can: "read",
+            },
+            {
+              who: "anyone",
+              can: "write",
+            },
+          ],
         },
       },
     };
