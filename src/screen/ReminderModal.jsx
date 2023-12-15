@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { link } from '../data';
+import { Link } from "react-router-dom";
+import { FiChevronRight } from 'react-icons/fi';
 
 const ReminderModal = () => {
   const [title, setTitle] = useState('');
@@ -37,10 +39,13 @@ const ReminderModal = () => {
 
   return (
     <div className="fixed top-0 left-0 w-full h-full  items-center  bg-gray-800 bg-opacity-50  flex justify-center  ">
-    {/* <div className="fixed inset-0 bg-[black] bg-opacity-30 backdrop-blur-sm  flex justify-center items-center "> */}
-    
+      {/* <div className="fixed inset-0 bg-[black] bg-opacity-30 backdrop-blur-sm  flex justify-center items-center "> */}
+
       <div className="md:w-[40rem] p-8 bg-white justify-center items-center mx-20">
         <form onSubmit={handleSubmit} className="mt-6 grid justify-center items-center overflow-hidden">
+          <div className="p-2 mb-2 cursor-pointer " >
+            <FiChevronRight className="text-white  text-lg top-[1.3rem] right-[7rem]" />
+          </div>
           <div className='flex justify-between'>
             <h1 className="font-bold text-2xl text-[#300193]">Set Reminder</h1>
             <button type="submit" className="bg-[#300193] px-4 py-1 text-white text-md rounded-full">Save</button>
@@ -81,7 +86,7 @@ const ReminderModal = () => {
                   {emails.map((email, index) => (
                     <div key={index} className="bg-[#300193] px-2 py-1 text-xs rounded-full text-white">
                       {email}
-                      <button onClick={() => handleRemoveEmail(index)}className='absolute pl-2 text-[black] mb-8'>&times;</button>
+                      <button onClick={() => handleRemoveEmail(index)} className='absolute pl-2 text-[black] mb-8'>&times;</button>
                     </div>
                   ))}
                 </div>

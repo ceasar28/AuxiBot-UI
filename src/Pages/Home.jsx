@@ -177,18 +177,18 @@ const Home = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  return (
-    <div className="min-h-[100vh] flex flex-row">
-      {window.innerWidth <= 768 ? (
-        <div className="w-[15vw] min-h-[100vh]"></div>
-      ) : (
-        <div className=" w-[35vw] ms:w-[30vw] md:w-[20vw] min-h-[100vh]"></div>
-      )}
-      <div
-        className="w-[75vw] sm:w-[60vw] flex m-auto flex-col items-start  justify-between overflow-y-scroll overflow-x-hidden"
-        style={{ maxHeight: "80vh", minHeight: "40vh" }}
-      >
-        {Message && <WelcomeMessage fName={fName} />}
+    return (
+        <div className="min-h-[100vh] flex flex-row">
+            {window.innerWidth <= 768 ? (
+                <div className="w-[15vw] min-h-[100vh]"></div>
+            ) : (
+                <div className=" w-[35vw] ms:w-[30vw] md:w-[20vw] min-h-[100vh]"></div>
+            )}
+            <div
+                className="w-[75vw] sm:w-[60vw] flex m-auto flex-col items-start  justify-between overflow-y-scroll overflow-x-hidden"
+                style={{ maxHeight: "80vh", minHeight: "40vh" }}
+            >
+                {Message && <WelcomeMessage fName={fName} />}
 
         {!Message && (
           <div className="messages">
@@ -201,30 +201,30 @@ const Home = () => {
           </div>
         )}
 
-        <div className="absolute bottom-[0rem] w-[75vw] sm:w-[60vw] ">
-          <div className="">
-            <textarea
-              placeholder="Start a conversation"
-              className="w-full max-h-[20rem] min-h-[2rem] h-auto rounded-lg border-2 border-solid border-black-400 outline-none pl-[1rem] pt-1rem mb-[1rem] resize-none font-Sora font-medium text-[14px] xs:text-[16px] overflow-auto m-2 justify-center items-center flex focus:ring-violet-900 focus:border-violet-900"
-              value={text}
-              onChange={handleChange}
-              onKeyPress={handleKeyPress}
-            />
-            <img
-              src={calendar}
-              alt="Logo"
-              className="w-6 h-6 absolute bottom-[15%] right-[5rem] transform translate-y-[-90%] cursor-pointer"
-              onClick={toggleRightSidebar}
-            />
-            <div
-              className="w-[30px] h-[30px] bg-violet-900 rounded-[29px] pb-1 pl-1 flex justify-center items-center absolute bottom-[5%] right-[1rem] transform translate-y-[-90%] cursor-pointer"
-              onClick={handleSend}
-            >
-              <img src={send} alt="Logo" className="w-6 h-6 " />
+                <div className="fixed bottom-0 flex items-center justify-center w-[75vw] sm:w-[60vw] m-auto"> 
+                    <div className="">
+                        <textarea
+                            placeholder="Start a conversation"
+                            className="w-[75vw] sm:w-[60vw] max-h-[20rem] min-h-[2rem] h-auto rounded-lg border-2 border-solid border-black-400 outline-none pl-[1rem] pt-1rem mb-[1rem] resize-none font-Sora font-medium text-[14px] xs:text-[16px] overflow-auto m-2 justify-center items-center flex focus:ring-violet-900 focus:border-violet-900"
+                            value={text}
+                            onChange={handleChange}
+                            onKeyPress={handleKeyPress}
+                        />
+                        <img
+                            src={calendar}
+                            alt="Logo"
+                            className="w-6 h-6 absolute bottom-[15%] right-[5rem] transform translate-y-[-90%] cursor-pointer"
+                            onClick={toggleRightSidebar}
+                        />
+                        <div
+                            className="w-[30px] h-[30px] bg-violet-900 rounded-[29px] pb-1 pl-1 flex justify-center items-center absolute bottom-[5%] right-[1rem] transform translate-y-[-90%] cursor-pointer"
+                            onClick={handleSend}
+                        >
+                            <img src={send} alt="Logo" className="w-6 h-6 " />
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
 
       <LeftSidebar
         fName={fName}
