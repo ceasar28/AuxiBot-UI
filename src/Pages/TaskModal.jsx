@@ -2,6 +2,8 @@ import { useState } from "react";
 import {BiSolidEdit} from 'react-icons/bi'
 import {MdDelete} from 'react-icons/md'
 import { IoSend } from "react-icons/io5"
+import { Link } from "react-router-dom";
+import { FiChevronRight } from 'react-icons/fi';
 
 
 
@@ -21,6 +23,7 @@ const TaskModal = () => {
     };
   return (
     <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm  flex justify-center items-center">
+          
         <div className='flex gap-2'>
           <div className='bg-white w-[40rem] p-8'>
             <h1>Todo List</h1>
