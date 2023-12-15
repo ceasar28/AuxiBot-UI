@@ -1,6 +1,9 @@
 import add from '../assets/Group (1).png';
 import RecentChat from './RecentChat';
 import { FiChevronRight } from 'react-icons/fi';
+import arrow from "../assets/_.png";
+import UpcomingEvent from "./UpcomingEvent";
+
 
 const RightSidebar = ({ rightSidebarOpen, toggleRightSidebar, showRecentChat }) => {
     return (
@@ -12,16 +15,31 @@ const RightSidebar = ({ rightSidebarOpen, toggleRightSidebar, showRecentChat }) 
                         <FiChevronRight className="text-white absolute text-lg top-[1.3rem] right-[7rem]" />
                     </div>
                     {/* Content for the right sidebar */}
-                    <div className="flex flex-col items-start justify-between mt-[3rem]">
-                        <div className="w-[14rem] flex items-center justify-between">
-                            <div className="text-neutral-400 text-opacity-90 text-base font-medium font-['Inter']">Daily Task</div>
-                            <img
-                                src={add}
-                                alt="Logo"
-                                className="w-3.5 h-3.5 cursor-pointer"
-                            />
+                    <div className="flex flex-col items-start h-[100vh] m-auto justify-between mt-[3rem]">
+                        <div className="h-[50%]">
+                            <div className="w-[14rem] flex items-center justify-between">
+                                <div className="text-neutral-400 text-opacity-90 text-base font-medium font-['Inter']">Daily Task</div>
+                                <img
+                                    src={add}
+                                    alt="Logo"
+                                    className="w-3.5 h-3.5 cursor-pointer"
+                                />
+                            </div>
+                            <RecentChat />
                         </div>
-                        <RecentChat />
+                        <div className="h-[50%]">
+                            <div className="w-[14rem] flex items-center justify-between">
+                                <div className="text-neutral-400 text-opacity-90 text-lg font-medium font-['Inter']">
+                                    Upcoming Event
+                                </div>
+                                <img
+                                    src={arrow}
+                                    alt="Logo"
+                                    className="w-3.5 h-3.5 cursor-pointer"
+                                />
+                            </div>
+                            <UpcomingEvent />
+                        </div>
                     </div>
                 </div>
             )}
