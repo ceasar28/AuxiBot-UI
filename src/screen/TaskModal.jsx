@@ -36,11 +36,11 @@ function TaskModal() {
 
 
       <div className="w-[90vw] sm:w-[50vw] h-[32rem] flex flex-col p-8 bg-white justify-start items-center rounded-lg shadow-8xl max-w-md m-auto transform transition-all duration-300 hover:shadow-4xl">
-      <Link to="/auxibot">
-          <div className="p-2 mb-2 cursor-pointer absolute left-[2rem]" >
+        <Link to="/auxibot">
+          <div className="p-2 mb-2 cursor-pointer absolute  top-2 left-2" >
             <FiX className="text-black  text-lg " />
-          </div> 
-         </Link>
+          </div>
+        </Link>
         <div className="overflow-hidden">
           <div className="w-full grid justify-center gap-1 items-center text-start p-6  ">
             <h1 className="text-2xl font-semibold   ">Any Plans For Today</h1>
@@ -49,7 +49,7 @@ function TaskModal() {
           <div className="flex justify-center mx-5 ">
             <input type='text' value={value}
               onChange={(e) => setValue(e.target.value)}
-              placeholder='make a list....' className="w-[20rem] p-3 bg-slate-300 border-slate-500 placeholder-slate-400 px-3 contrast-more:border-slate-400 contrast-more:placeholder-slate-500" />
+              placeholder='make a list....' className="w-[60vw] ss:w-[50vw] sm:w-[30vw] md:w-[20vw] p-3 bg-slate-300 border-slate-500 placeholder-slate-400 px-3 contrast-more:border-slate-400 contrast-more:placeholder-slate-500" />
             <button onClick={addTask} className="bg-cyan-500 p-2  text-2xl font-bold"><IoSend /></button>
           </div>
         </div>
