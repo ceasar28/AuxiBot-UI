@@ -1,11 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import auxibot from '../assets/material-symbols_robot.jpg';
+
 const WelcomeMessage = ({ fName }) => {
   return (
-    <div className="WelcomeMessage flex flex-col items-start ml-[5vw] bottom-0 transform ">
-      <div className="Auxibot text-start text-violet-900 text-xl font-bold font-['Inter'] mb-2">
-        AuxiBot
-      </div>
+    <div className="WelcomeMessage fixed bottom-[5rem] flex flex-col items-start justify-center w-[75vw] sm:w-[60vw] m-auto">
+      <div className="Auxibot flex mt-0 text-start text-violet-900 text-xl font-bold font-['Inter'] mb-0">
+                <img src={auxibot} alt="Logo" className="w-6 h-6" />
+                AuxiBot
+            </div>
       <div className="WelcomeBelieve text-start text-gray-900 text-opacity-75 text-xl font-normal font-['Inter']">
         Welcome {fName}
       </div>

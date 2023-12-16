@@ -29,6 +29,13 @@ const Home = () => {
   const [chats, setChats] = useState([]);
   const [dwnChats, setDwnChats] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [menuClicked, setMenuClicked] = useState(false);
+
+
+  const toggleSidebar = () => {
+    setMenuClicked(!menuClicked); // Toggle menuClicked state
+    setSidebarExpanded(!sidebarExpanded);
+  };
 
   const storedText = JSON.parse(localStorage.getItem("userText")) || [];
 
@@ -129,7 +136,6 @@ const Home = () => {
     setShowTextChat(!sidebarExpanded);
   };
 
-  const [menuClicked, setMenuClicked] = useState(false);
 
   useEffect(() => {
     if (web5 && userDid) {
@@ -227,13 +233,13 @@ const Home = () => {
   return (
     <div className="min-h-[100vh] flex flex-row">
       {window.innerWidth <= 768 ? (
-        <div className="w-[15vw] min-h-[100vh]"></div>
+        <div className="min-h-[100vh]"></div>
       ) : (
         <div className=" w-[35vw] ms:w-[30vw] md:w-[20vw] min-h-[100vh]"></div>
       )}
       <div
-        className="w-[75vw] sm:w-[60vw] flex m-auto flex-col items-start  justify-between overflow-y-scroll overflow-x-hidden"
-        style={{ maxHeight: "80vh", minHeight: "40vh" }}
+        className="w-[100vw] sm:w-[60vw] flex m-auto flex-col items-center  justify-center overflow-y-auto overflow-x-hidden mt-[4rem] sm:mt-0 mb-[5rem]"
+        style={{ Height: "80vh" }}
       >
         {Message && <WelcomeMessage fName={fName} />}
 
@@ -260,11 +266,11 @@ const Home = () => {
             <img
               src={calendar}
               alt="Logo"
-              className="w-6 h-6 absolute bottom-[15%] right-[5rem] transform translate-y-[-90%] cursor-pointer"
+              className="w-6 h-6 absolute bottom-[10%] right-[4rem] transform translate-y-[-90%] cursor-pointer"
               onClick={toggleRightSidebar}
             />
             <div
-              className="w-[30px] h-[30px] bg-violet-900 rounded-[29px] pb-1 pl-1 flex justify-center items-center absolute bottom-[5%] right-[1rem] transform translate-y-[-90%] cursor-pointer"
+              className="w-[30px] h-[30px] bg-violet-900 rounded-[29px] pb-1 pl-1 flex justify-center items-center absolute bottom-[0%] right-[1rem] transform translate-y-[-90%] cursor-pointer"
               onClick={handleSend}
             >
               <img src={send} alt="Logo" className="w-6 h-6 " />
@@ -280,9 +286,10 @@ const Home = () => {
         showRecentChat={showRecentChat}
         showUpcomingEvent={showUpcomingEvent}
         showTextChat={showTextChat}
+        toggleSidebar={toggleSidebar} 
       />
 
-      <div className="Logo flex items-center mt-5 ml-2.5 absolute cursor-pointer">
+      <div className="Logo flex items-center mt-5 ml-2.5 fixed cursor-pointer">
         <Link to="/">
           {" "}
           <div className="flex items-center cursor-pointer">
@@ -292,7 +299,7 @@ const Home = () => {
               className="h-8 mr-2 top-[3.5rem] left-[1.6rem]"
             />
 
-            <div className=" text-center text-white text-2xl font-semibold font-['Inter'] hidden sm:block">
+            <div className=" text-center text-white text-2xl font-semibold font-Sora">
               AuxiBot
               <br />
             </div>
@@ -301,25 +308,18 @@ const Home = () => {
       </div>
 
       {window.innerWidth <= 768 && (
-        <div className="ToggleIcon p-2 mb-2 cursor-pointer absolute">
+        <div className="ToggleIcon p-2 mb-2 cursor-pointer fixed"  onClick={handleToggleSidebar}>
           {(!menuClicked || window.innerWidth <= 768) && (
+            
             <FiMenu
-              className="text-white text-lg absolute top-[3.5rem] left-[1.0rem]"
-              onClick={() => {
-                handleToggleSidebar();
-                setMenuClicked(true);
+            className={`text-white text-lg absolute`}
+            style={{
+                top: showRecentChat ? (window.innerWidth <= 768 ? '3.5rem' : '1.5rem') : '1.5rem',
+                left: showRecentChat ? (window.innerWidth <= 768 ? '1rem' : '90vw') : '92vw',
               }}
-            />
+          />
           )}
-          {(!menuClicked || window.innerWidth > 768) && (
-            <FiChevronLeft
-              className="text-white absolute text-lg top-[1.6rem] left-[15rem]"
-              onClick={() => {
-                handleToggleSidebar();
-                setMenuClicked(true);
-              }}
-            />
-          )}
+          
         </div>
       )}
 
