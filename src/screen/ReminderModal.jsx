@@ -6,6 +6,7 @@ import { FiChevronRight } from 'react-icons/fi';
 const ReminderModal = () => {
   const [title, setTitle] = useState('');
   const [value, setValue] = useState('');
+  const [meetLink, setMeetLink] = useState('');
   const [emails, setEmails] = useState([]);
   const [currentEmail, setCurrentEmail] = useState('');
 
@@ -16,6 +17,7 @@ const ReminderModal = () => {
     // Reset the form fields
     setTitle('');
     setValue('');
+    setMeetLink('');
     setEmails([]);
     setCurrentEmail('');
   }
@@ -38,14 +40,14 @@ const ReminderModal = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full  items-center  bg-gray-800 bg-opacity-50  flex justify-center  ">
+    <div className=" top-0 left-0 w-full h-full  items-center  bg-gray-800 bg-opacity-50  flex justify-center  ">
       {/* <div className="fixed inset-0 bg-[black] bg-opacity-30 backdrop-blur-sm  flex justify-center items-center "> */}
 
-      <div className="md:w-[40rem] p-8 bg-white justify-center items-center mx-20">
-        <form onSubmit={handleSubmit} className="mt-6 grid justify-center items-center overflow-hidden">
+      <div className="md:w-[40rem] h-[100vh] p-8 bg-white justify-center items-center mx-20">
+        <form onSubmit={handleSubmit} className="mt-6 grid justify-center items-center overflow-hidden ">
           <div className="p-2 mb-2 cursor-pointer " >
             <FiChevronRight className="text-white  text-lg top-[1.3rem] right-[7rem]" />
-          </div>
+          </div> 
           <div className='flex justify-between'>
             <h1 className="font-bold text-2xl text-[#300193]">Set Reminder</h1>
             <button type="submit" className="bg-[#300193] px-4 py-1 text-white text-md rounded-full">Save</button>
@@ -102,12 +104,17 @@ const ReminderModal = () => {
             </div>
 
             <div className='grid gap-1'>
-              <label>Add Location</label>
-              <select className="w-[20rem] p-3 bg-slate-300 border-slate-500 placeholder-slate-400 px-3 contrast-more:border-slate-400 contrast-more:placeholder-slate-500 z-99">
-                {link.map((item, index) => (
-                  <option key={index}>{item.icon}{item.name}</option>
-                ))}
-              </select>
+              <label>Add Meeting Link</label>
+              <div>
+                <input
+                  type='text'
+                  required
+                  value={meetLink}
+                  onChange={(e) => setValue(e.target.value)}
+                  placeholder='Add Email'
+                  className="w-[20rem] p-3 bg-slate-300 border-slate-500 placeholder-slate-400 px-3 contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
+                />
+              </div>
             </div>
 
             <div className='grid gap-1'>
