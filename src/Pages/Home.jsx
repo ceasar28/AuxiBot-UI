@@ -117,13 +117,18 @@ const Home = () => {
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
-      handleSend();
-      setMessage(false);
-      setChatAreaVisible(true);
-      setResponseVisible(true);
-      setText(""); // Clear the input field after hitting Enter
+      if (text.trim() !== "") {
+        handleSend();
+        setMessage(false);
+        setChatAreaVisible(true);
+        setResponseVisible(true);
+        setText(""); 
+      } else {
+        console.log("Please enter a message before sending.");
+      }
     }
   };
+  
 
   const toggleRightSidebar = () => {
     setRightSidebarOpen(!rightSidebarOpen);
@@ -271,7 +276,7 @@ const Home = () => {
             />
             <div
               className="w-[30px] h-[30px] bg-violet-900 rounded-[29px] pb-1 pl-1 flex justify-center items-center absolute bottom-[0%] right-[1rem] transform translate-y-[-90%] cursor-pointer"
-              onClick={handleSend}
+              onClick={text.trim() !== "" ? handleSend : undefined}
             >
               <img src={send} alt="Logo" className="w-6 h-6 " />
             </div>
