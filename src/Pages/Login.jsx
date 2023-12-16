@@ -112,7 +112,7 @@ const Login = () => {
       </div>
       <div className="w-[90vw] ms:w-[60vw] min-h-[100vh] rounded-tl-[40px] rounded-bl-[40px] bg-white ms:absolute right-0 flex flex-col justify-center items-center m-auto">
         <div className="w-[354px] text-center text-black text-[20px] sm:text-[30px] font-semibold font-Sora">
-          Join the Future with AuxiBot 
+          Let's <span className="text-primary-400">AuxiBot</span> Assist
         </div>
         <div className="w-[58px] h-[39px] text-center text-black text-[25px] font-semibold font-['Inter']"></div>
 
