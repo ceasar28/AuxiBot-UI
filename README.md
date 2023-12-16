@@ -2,19 +2,19 @@
 
 ## Overview
 
-AuxiBot is an AI-driven bot app built on web5 technology tailored to assist users in managing their daily schedules, tasks, and communications through conversation. It integrates with calendars for reminders and supports email communication to keep users updated on their tasks.
+AuxiBot is an AI-driven bot app built on web5 technology tailored to assist users in managing their daily schedules, tasks, and communications through conversation. It supports email communication to keep users updated on their tasks.
 
 ## Key Features
 
 ### 1. Conversational Task Management
 
-- Offers a conversational interface where users can interact naturally to create, edit, and manage tasks efficiently.
-- Allows users to converse with the bot to set reminders, create tasks, and receive updates seamlessly.
+- Offers a conversational interface where users can interact naturally, and create, edit, and manage tasks efficiently.
+- Allows users to converse with the bot, set reminders, create tasks, and receive updates seamlessly.
 
-### 2. Calendar Integration for Task Reminders
+### 2. Task Reminders
 
-- Seamlessly integrates with users' calendars to set task reminders, schedule events, and send notifications as per user preferences.
-- Provides updates and reminders about upcoming tasks and events through conversational prompts.
+- Seamlessly allows users' to set task reminders, schedule events, and send notifications as per user preferences.
+- Provides updates and reminders about upcoming tasks and events.
 
 ### 3. Email Support for Task Updates
 
