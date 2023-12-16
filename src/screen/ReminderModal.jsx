@@ -1,37 +1,57 @@
 import { useState } from "react";
 import { link } from '../data';
 import { Link } from "react-router-dom";
-import { FiChevronRight } from 'react-icons/fi';
+import { FiX } from 'react-icons/fi';
 
 const ReminderModal = () => {
   const [title, setTitle] = useState('');
-  const [value, setValue] = useState('');
   const [meetLink, setMeetLink] = useState('');
   const [emails, setEmails] = useState([]);
   const [currentEmail, setCurrentEmail] = useState('');
+  const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle the form submission logic here
-    console.log("Form submitted:", { title, value, emails });
+    // Gather all form data
+    const formData = {
+      title,
+      meetLink,
+      emails,
+      date,
+      time
+    };
+
+    // Log form data
+    console.log("Form submitted:", formData);
+
     // Reset the form fields
     setTitle('');
-    setValue('');
     setMeetLink('');
     setEmails([]);
     setCurrentEmail('');
-  }
+    setDate('');
+    setTime('');
+  };
 
   const handleInputChange = (e) => {
     setCurrentEmail(e.target.value);
   };
-
   const handleInputKeyDown = (e) => {
     if (e.key === 'Enter' && currentEmail.trim() !== '') {
-      setEmails([...emails, currentEmail.trim()]);
+      const enteredEmails = currentEmail.split(',').map(email => email.trim());
+      enteredEmails.forEach(email => {
+        setEmails(prevEmails => [...prevEmails, email]);
+        console.log('Added email:', email); // Log the added email
+      });
       setCurrentEmail('');
     }
   };
+  
+  
+  
+  
+  
 
   const handleRemoveEmail = (index) => {
     const newEmails = [...emails];
@@ -40,20 +60,21 @@ const ReminderModal = () => {
   };
 
   return (
-    <div className=" top-0 left-0 w-full h-full  items-center  bg-gray-800 bg-opacity-50  flex justify-center  ">
-      {/* <div className="fixed inset-0 bg-[black] bg-opacity-30 backdrop-blur-sm  flex justify-center items-center "> */}
-
-      <div className="md:w-[40rem] h-[100vh] p-8 bg-white justify-center items-center mx-20">
-        <form onSubmit={handleSubmit} className="mt-6 grid justify-center items-center overflow-hidden ">
+    <div className="w-full h-[100vh]  items-center  bg-gray-800 bg-opacity-50  flex justify-center">
+    
+      <div className="w-[90vw] sm:w-[50vw] h-[32rem] flex p-8 bg-white justify-center items-center rounded-lg shadow-8xl max-w-md m-auto transform transition-all duration-300 hover:shadow-4xl">
+        <form onSubmit={handleSubmit} className=" flex flex-col w-full sm:w-[50vw]"> 
+        <Link to="/auxibot">
           <div className="p-2 mb-2 cursor-pointer " >
-            <FiChevronRight className="text-white  text-lg top-[1.3rem] right-[7rem]" />
+            <FiX className="text-black  text-lg top-[0rem] right-[7rem]" />
           </div> 
+         </Link>
           <div className='flex justify-between'>
             <h1 className="font-bold text-2xl text-[#300193]">Set Reminder</h1>
             <button type="submit" className="bg-[#300193] px-4 py-1 text-white text-md rounded-full">Save</button>
           </div>
 
-          <div className='mt-[3rem] grid justify-center gap-4'>
+          <div className='mt-[1rem] grid justify-center gap-4'>
             <div className='grid gap-1'>
               <label>Add Title</label>
               <div>
@@ -62,21 +83,7 @@ const ReminderModal = () => {
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   placeholder='Add Title'
-                  className="w-[20rem] p-3 bg-slate-300 border-slate-500 placeholder-slate-400 px-3 contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
-                />
-              </div>
-            </div>
-
-            <div className='grid gap-1'>
-              <label>Email</label>
-              <div>
-                <input
-                  type='email'
-                  required
-                  value={value}
-                  onChange={(e) => setValue(e.target.value)}
-                  placeholder='Add Email'
-                  className="w-[20rem] p-3 bg-slate-300 border-slate-500 placeholder-slate-400 px-3 contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
+                  className="w-full p-3 bg-slate-300 border-slate-500 placeholder-slate-400 px-3 contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
                 />
               </div>
             </div>
@@ -104,42 +111,40 @@ const ReminderModal = () => {
             </div>
 
             <div className='grid gap-1'>
-              <label>Add Meeting Link</label>
+              <label>Add Meeting Information</label>
               <div>
                 <input
                   type='text'
                   required
                   value={meetLink}
-                  onChange={(e) => setValue(e.target.value)}
-                  placeholder='Add Email'
+                  onChange={(e) => setMeetLink(e.target.value)}
+                  placeholder='Meeting Information'
                   className="w-[20rem] p-3 bg-slate-300 border-slate-500 placeholder-slate-400 px-3 contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
                 />
               </div>
             </div>
 
-            <div className='grid gap-1'>
+           <div className='grid gap-1'>
               <label>Time/Date </label>
               <div className='flex gap-1'>
                 <input
                   type='date'
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
                   placeholder='Add Date'
                   className="w-[10rem] p-3 bg-slate-300 border-slate-500 placeholder-slate-400 px-3 contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
                 />
                 <input
                   type='time'
+                  value={time}
+                  onChange={(e) => setTime(e.target.value)}
                   placeholder='Add Time'
                   className="w-[10rem] p-3 bg-slate-300 border-slate-500 placeholder-slate-400 px-3 contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
                 />
               </div>
             </div>
 
-            <div className='grid gap-1'>
-              <label>Add Notification</label>
-              <select className="w-[20rem] p-3 bg-slate-300 border-slate-500 placeholder-slate-400 px-3 contrast-more:border-slate-400 contrast-more:placeholder-slate-500">
-                <option>Yes</option>
-                <option>No</option>
-              </select>
-            </div>
+            
           </div>
         </form>
       </div>
