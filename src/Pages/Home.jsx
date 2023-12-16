@@ -238,7 +238,7 @@ const Home = () => {
         <div className=" w-[35vw] ms:w-[30vw] md:w-[20vw] min-h-[100vh]"></div>
       )}
       <div
-        className="w-[100vw] sm:w-[60vw] flex m-auto flex-col items-center  justify-center overflow-y-auto overflow-x-hidden mt-[4rem] sm:mt-0 mb-[5rem]"
+        className="w-[100vw] sm:w-[60vw] flex m-auto flex-col items-center  justify-end overflow-y-auto overflow-x-hidden mt-[4rem] sm:mt-0 mb-[5rem]" 
         style={{ Height: "80vh" }}
       >
         {Message && <WelcomeMessage fName={fName} />}
