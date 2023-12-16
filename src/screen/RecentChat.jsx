@@ -84,7 +84,7 @@ const RecentChat = () => {
       {filteredChats.map((chat, index) => (
         <div
           key={index}
-          className="ChatName w-[14rem] flex items-center justify-between text-start text-white text-lg font-medium font-['Inter']"
+          className="ChatName w-[14rem] flex items-center justify-between text-start text-white text-lg font-medium font-Sora"
         >
           <div className=""> {chat[0].date}</div>
           <img
