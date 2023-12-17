@@ -263,7 +263,7 @@ const Home = () => {
           <div className="">
             <textarea
               placeholder="Start a conversation"
-              className="w-[75vw] sm:w-[60vw] max-h-[20rem] min-h-[2rem] h-auto rounded-lg border-2 border-solid border-black-400 outline-none pl-[1rem] pt-1rem mb-[1rem] resize-none font-Sora font-medium text-[14px] xs:text-[16px] overflow-auto m-2 justify-center items-center flex focus:ring-violet-900 focus:border-violet-900"
+              className="w-[90vw] sm:w-[60vw] max-h-[20rem] min-h-[2rem] h-auto rounded-lg border-2 border-solid border-black-400 outline-none pl-[1rem] pt-1rem mb-[1rem] resize-none font-Sora font-medium text-[14px] xs:text-[16px] overflow-auto m-2 justify-center items-center flex focus:ring-violet-900 focus:border-violet-900"
               value={text}
               onChange={handleChange}
               onKeyPress={handleKeyPress}

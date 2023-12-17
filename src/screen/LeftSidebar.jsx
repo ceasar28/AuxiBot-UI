@@ -59,7 +59,7 @@ const LeftSidebar = ({
       { showRecentChat && (
         <div className="flex flex-col items-start justify-between mt-[3rem]">
           <div className="w-[14rem] flex items-center justify-between">
-            <div className="text-neutral-400 text-opacity-90 text-base font-medium font-['Inter']">
+            <div className="text-neutral-400 text-opacity-90 text-base font-medium font-Sora">
               Recent
             </div>
             <img src={add} alt="Logo" className="w-3.5 h-3.5 cursor-pointer" />
@@ -72,9 +72,9 @@ const LeftSidebar = ({
       <Link to="/Reminder">
       {showTextChat && (
         <div className="cursor-pointer  flex items-center justify-between ">
-          <img src={send} alt="Logo" className="w-6 h-6 mb-10 mr-2" />
+          <img src={send} alt="Logo" className="w-6 h-6 mb-10  mr-2" />
           
-            <div className=" text-white text-lg font-medium font-['Inter'] mb-10">
+            <div className=" text-white text-[16px] font-medium font-Sora mb-10">
               Set Reminder
             </div>
           
@@ -83,10 +83,10 @@ const LeftSidebar = ({
         </Link>
         <Link to="/Task">
         {showTextChat && (
-        <div className="cursor-pointer flex items-center justify-between ">
+        <div className="cursor-pointer w-[8rem] flex items-center justify-between ">
           <img src={edit} alt="Logo" className="w-6 h-6" />
           
-            <div className=" text-white text-lg font-medium font-['Inter']">
+            <div className=" text-white text-[16px] font-medium font-Sora">
               Make A List            </div>
           
         </div>
@@ -98,7 +98,7 @@ const LeftSidebar = ({
         <div className="cursor-pointer w-[6rem] flex items-center justify-between ">
           <img src={profile} alt="Logo" className="w-6 h-6 mb-3 mr-2" />
          
-            <div className=" text-white text-lg font-medium font-['Inter'] mb-3">
+            <div className=" text-white text-[16px] font-medium font-Sora mb-3">
               {fName}
             </div>
          
@@ -108,7 +108,7 @@ const LeftSidebar = ({
         <div className="cursor-pointer w-[6rem] flex items-center justify-between ">
           <img src={logout} alt="Logo" className="w-6 h-6" />
           
-            <div className=" text-white text-lg font-medium font-['Inter']">
+            <div className=" text-white text-[16px] font-medium font-Sora">
               Logout
             </div>
          
