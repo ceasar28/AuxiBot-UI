@@ -34,7 +34,7 @@ const LeftSidebar = ({
       const scrollY = window.scrollY || window.pageYOffset;
       const sidebar = document.querySelector('.SideBar');
       if (sidebar && scrollY > 0) {
-        sidebar.style.backgroundColor = 'rgba(0, 0, 0, 0.85)';
+        sidebar.style.backgroundColor = 'rgba(48, 1, 147, 0.9';
       } else {
         sidebar.style.backgroundColor = 'rgba(48, 1, 147, 1)';
       }
