@@ -72,7 +72,7 @@ const LeftSidebar = ({
       <Link to="/Reminder">
       {showTextChat && (
         <div className="cursor-pointer  flex items-center justify-between ">
-          <img src={send} alt="Logo" className="w-6 h-6 mb-10 mr-2" />
+          <img src={send} alt="Logo" className="w-6 h-6 mb-10  mr-2" />
           
             <div className=" text-white text-[16px] font-medium font-Sora mb-10">
               Set Reminder
@@ -83,7 +83,7 @@ const LeftSidebar = ({
         </Link>
         <Link to="/Task">
         {showTextChat && (
-        <div className="cursor-pointer flex items-center justify-between ">
+        <div className="cursor-pointer w-[8rem] flex items-center justify-between ">
           <img src={edit} alt="Logo" className="w-6 h-6" />
           
             <div className=" text-white text-[16px] font-medium font-Sora">
