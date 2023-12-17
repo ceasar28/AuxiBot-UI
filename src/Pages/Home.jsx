@@ -271,11 +271,11 @@ const Home = () => {
             <img
               src={calendar}
               alt="Logo"
-              className="w-6 h-6 absolute bottom-[10%] right-[4rem] transform translate-y-[-90%] cursor-pointer"
+              className="w-6 h-6 absolute bottom-[10%] right-[2rem] sm:right-[4rem] transform translate-y-[-90%] cursor-pointer"
               onClick={toggleRightSidebar}
             />
             <div
-              className="w-[30px] h-[30px] bg-violet-900 rounded-[29px] pb-1 pl-1 flex justify-center items-center absolute bottom-[0%] right-[1rem] transform translate-y-[-90%] cursor-pointer"
+              className="w-[30px] h-[30px] bg-violet-900 rounded-[29px] pb-1 pl-1 flex justify-center items-center absolute bottom-[0%] right-[-1.5rem] sm:right-[1rem] transform translate-y-[-90%] cursor-pointer"
               onClick={text.trim() !== "" ? handleSend : undefined}
             >
               <img src={send} alt="Logo" className="w-6 h-6 " />
