@@ -1,4 +1,4 @@
-# AuxiBot
+# Project AuxiBot
 
 ## Overview
 
