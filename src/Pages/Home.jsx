@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import send from "../assets/ion_send.png";
+import mic from "../assets/mic.png";
 import calendar from "../assets/ri_calendar-todo-fill.png";
 import { FiMenu, FiChevronLeft } from "react-icons/fi";
 import logoImage from "../assets/material-symbols_robot.png";
@@ -253,22 +254,25 @@ const Home = () => {
       console.error('Speech recognition error:', event.error);
     };
 
-   // setRecognition(recognitionInstance); // Set the recognition instance in state
+    setRecognition(recognitionInstance); // Set the recognition instance in state
   }, []);
 
-  useEffect(() => {
+/*   useEffect(() => {
     startSpeechRecognition();
-  }, []);
+  }, []); */
+  
 
   const startSpeechRecognition = () => {
     if (recognition) {
       recognition.start();
+      setListening(true); // Set listening state to true
     }
   };
 
   const stopSpeechRecognition = () => {
     if (recognition) {
       recognition.stop();
+      setListening(false); // Set listening state to false
     }
   };
 
@@ -304,6 +308,16 @@ const Home = () => {
             value={text}
             onChange={handleChange}
             onKeyPress={handleKeyPress}
+          />
+         
+         
+         <img
+            src={mic}
+            alt="Logo"
+            className={`w-6 h-6 absolute bottom-[10%] right-[4rem] sm:right-[6rem] transform translate-y-[-90%] cursor-pointer ${
+              listening ? 'bg-red-500 rounded-[30px] flex justify-center items-center' : 'bg-white' // Set background color based on listening state
+            }`}
+            onClick={listening ? stopSpeechRecognition : startSpeechRecognition} // Toggle listening
           />
           
             <img
