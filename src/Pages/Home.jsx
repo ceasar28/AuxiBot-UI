@@ -30,6 +30,8 @@ const Home = () => {
   const [dwnChats, setDwnChats] = useState([]);
   const [loading, setLoading] = useState(false);
   const [menuClicked, setMenuClicked] = useState(false);
+  const [listening, setListening] = useState(false);
+  const [recognition, setRecognition] = useState(null);
 
 
   const toggleSidebar = () => {
@@ -235,6 +237,41 @@ const Home = () => {
     return record;
   };
 
+  useEffect(() => {
+    const recognitionInstance = new window.webkitSpeechRecognition(); // Initialize SpeechRecognition
+    recognitionInstance.continuous = true; // Continuous recognition
+    recognitionInstance.interimResults = true; // Get interim results
+
+    recognitionInstance.onresult = (event) => {
+      const transcript = Array.from(event.results)
+        .map((result) => result[0].transcript)
+        .join('');
+      setText(transcript); // Update the state with the recognized text
+    };
+
+    recognitionInstance.onerror = (event) => {
+      console.error('Speech recognition error:', event.error);
+    };
+
+   // setRecognition(recognitionInstance); // Set the recognition instance in state
+  }, []);
+
+  useEffect(() => {
+    startSpeechRecognition();
+  }, []);
+
+  const startSpeechRecognition = () => {
+    if (recognition) {
+      recognition.start();
+    }
+  };
+
+  const stopSpeechRecognition = () => {
+    if (recognition) {
+      recognition.stop();
+    }
+  };
+
   return (
     <div className="min-h-[100vh] flex flex-row">
       {window.innerWidth <= 768 ? (
@@ -261,13 +298,14 @@ const Home = () => {
 
         <div className="fixed bottom-0 flex items-center justify-center w-[75vw] sm:w-[60vw] m-auto">
           <div className="">
-            <textarea
-              placeholder="Start a conversation"
-              className="w-[90vw] sm:w-[60vw] max-h-[20rem] min-h-[2rem] h-auto rounded-lg border-2 border-solid border-black-400 outline-none pl-[1rem] pt-1rem mb-[1rem] resize-none font-Sora font-medium text-[14px] xs:text-[16px] overflow-auto m-2 justify-center items-center flex focus:ring-violet-900 focus:border-violet-900"
-              value={text}
-              onChange={handleChange}
-              onKeyPress={handleKeyPress}
-            />
+          <textarea
+            placeholder="Start a conversation"
+            className="w-[90vw] sm:w-[60vw] max-h-[20rem] min-h-[2rem] h-auto rounded-lg border-2 border-solid border-black-400 outline-none pl-[1rem] pt-1rem mb-[1rem] resize-none font-Sora font-medium text-[14px] xs:text-[16px] overflow-auto m-2 justify-center items-center flex focus:ring-violet-900 focus:border-violet-900"
+            value={text}
+            onChange={handleChange}
+            onKeyPress={handleKeyPress}
+          />
+          
             <img
               src={calendar}
               alt="Logo"
