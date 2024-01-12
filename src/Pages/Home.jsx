@@ -175,11 +175,11 @@ const Home = () => {
             setFname([...userProfile][0].firstName);
           } else {
             console.error("Error fetching sent messages:", status.detail);
-            // Handle specific error cases or show an error message to the user.
+            // Handl specific error cases or show an error message to the user.
           }
         } catch (error) {
           console.error("Oops, this happened", error);
-          // Handle unexpected errors here.
+          
         }
       };
 
